@@ -1,8 +1,13 @@
-chrome.tabs.onUpdated.addListener( function (tabId, changeInfo, tab) {
-    if (changeInfo.status === 'complete' && tab.active === true) {
-            chrome.tabs.sendMessage(tabId, {"message": "lookForButton"});
-    }
-})
+const formData = {
+    firstName: 'Fabian',
+    lastName: 'Liebing',
+    street: 'Georg-Schumann-Strasse 71',
+    city: 'Leipzig',
+    postcode: '04155',
+    email: 'liebfabi@googlemail.com',
+    birthdate: '28.05.1999',
+}
+
 
 chrome.runtime.onMessage.addListener(
     (request) => {
@@ -60,22 +65,23 @@ chrome.runtime.onMessage.addListener(
                 "referrer": "https://www.siegfriedgin.com/shop/checkout/",
                 "referrerPolicy": "strict-origin-when-cross-origin",
                 "body": "billing_country=DE&" +
-                    "billing_first_name=Fabian&" +
-                    "billing_last_name=Liebing&" +
+                    `billing_first_name=${formData.firstName}&` +
+                    `billing_last_name=${formData.lastName}&` +
                     "billing_company=&" +
-                    "billing_address_1=Georg-Schumann-Strasse+71&" +
+                    `billing_address_1=${formData.street}&` +
                     "billing_address_2=&" +
-                    "billing_postcode=04155&billing_city=Leipzig&" +
-                    "billing_email=liebfabi%40googlemail.com&" +
-                    "billing_myfield12=28.05.1999&" +
+                    `billing_postcode=${formData.postcode}&` +
+                    `billing_city=${formData.city}&` +
+                    `billing_email=${formData.email}&` +
+                    `billing_myfield12=${formData.birthdate}&` +
                     "shipping_country=DE&" +
                     "shipping_company=&" +
-                    "shipping_first_name=Fabian&" +
-                    "shipping_last_name=Liebing&" +
-                    "shipping_address_1=Georg-Schumann-Strasse+71&" +
+                    `shipping_first_name=${formData.firstNme}&` +
+                    `shipping_last_name=${formData.lastName}&` +
+                    `shipping_address_1=${formData.street}&` +
                     "shipping_address_2=&" +
-                    "shipping_postcode=04155&" +
-                    "shipping_city=Leipzig&" +
+                    `shipping_postcode=${formData.postcode}&` +
+                    `shipping_city=${formData.city}&` +
                     "shipping_method%5B0%5D=wbs%3A42fd6951_dhl_go_green&" +
                     "payment_method=paypal_plus&terms=on&" +
                     "terms-field=1&" +
