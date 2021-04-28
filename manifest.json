@@ -1,0 +1,33 @@
+{
+  "manifest_version": 2,
+
+  "name": "MyPLugin",
+  "description": "This plugin will do something cool",
+  "version": "1.0",
+
+  "browser_action": {
+    "default_icon": "icon.png",
+    "default_popup": "popup.html"
+  },
+  "background": {
+    "scripts": ["background.js", "popupbackground.js"]
+  },
+  "permissions": [
+    "activeTab",
+    "tabs"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "https://www.siegfriedgin.com/*"
+      ],
+      "js": ["jquery.min.js","addToCartScripts/siegfried.js"]
+    },
+    {
+      "matches": [
+        "https://www.siegfriedgin.com/shop/checkout/*"
+      ],
+      "js": ["jquery.min.js","autofills/siegfried.js"]
+    }
+  ]
+}
