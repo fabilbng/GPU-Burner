@@ -1,3 +1,5 @@
+//fuersiegried/shop
+
 const findButton = () => {
     const addToCardButton = document.getElementsByClassName('single_add_to_cart_button button alt')
     if (addToCardButton.length >= 1){
@@ -5,7 +7,7 @@ const findButton = () => {
         const pid = values.value
         const baseURL = values.baseURI
         const checkoutNonce = $("#woocommerce-process-checkout-nonce").attr('value')
-        chrome.runtime.sendMessage({message: 'addToCard', pid: pid, baseURL: baseURL, checkoutNonce: checkoutNonce})
+        chrome.runtime.sendMessage({message: 'addToCardSiegfried', pid: pid, baseURL: baseURL, checkoutNonce: checkoutNonce})
     }
 }
 

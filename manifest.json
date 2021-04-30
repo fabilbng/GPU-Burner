@@ -10,7 +10,7 @@
     "default_popup": "popup.html"
   },
   "background": {
-    "scripts": ["background.js", "popupbackground.js"]
+    "scripts": ["jquery.min.js","FORMDATA.js","backgroundscripts/globalfunctions.js","backgroundscripts/nbb.js","backgroundscripts/siegfried.js", "popupbackground.js"]
   },
   "permissions": [
     "activeTab",
@@ -19,15 +19,28 @@
   "content_scripts": [
     {
       "matches": [
+        "https://www.siegfriedgin.com/*",
+        "https://www.notebooksbilliger.de/*"
+      ],
+      "js": ["notificationDIV.js"]
+    },
+    {
+      "matches": [
         "https://www.siegfriedgin.com/*"
       ],
       "js": ["jquery.min.js","addToCartScripts/siegfried.js"]
     },
     {
       "matches": [
-        "https://www.siegfriedgin.com/shop/checkout/*"
+        "https://www.siegfriedgin.com/shop/checkout/"
       ],
       "js": ["jquery.min.js","autofills/siegfried.js"]
+    },
+    {
+      "matches": [
+        "https://www.notebooksbilliger.de/*"
+      ],
+      "js":["jquery.min.js","addToCartScripts/nbb.js"]
     }
   ]
 }
