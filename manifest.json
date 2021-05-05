@@ -26,7 +26,7 @@
   "content_scripts": [
     {
       "matches": ["<all_urls>"],
-      "js": ["plugins/jquery.min.js"]
+      "js": ["plugins/jquery.min.js", "globalContentScripts/akvpwr-bypass.js"]
     },
     {
       "matches": [
