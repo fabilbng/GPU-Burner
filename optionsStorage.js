@@ -1,0 +1,1 @@
+const optionsStorage = new OptionsSync();

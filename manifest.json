@@ -7,40 +7,51 @@
 
   "browser_action": {
     "default_icon": "icon.png",
-    "default_popup": "popup.html"
+    "default_popup": "popup/popup.html"
   },
   "background": {
-    "scripts": ["jquery.min.js","FORMDATA.js","backgroundscripts/globalfunctions.js","backgroundscripts/nbb.js","backgroundscripts/siegfried.js", "popupbackground.js"]
+    "scripts": [
+      "plugins/webtext-options.js",
+      "optionsStorage.js",
+      "plugins/jquery.min.js",
+      "backgroundscripts/globalfunctions.js",
+      "backgroundscripts/nbb.js"
+    ]
   },
   "permissions": [
     "activeTab",
-    "tabs"
+    "tabs",
+    "storage"
   ],
   "content_scripts": [
     {
+      "matches": ["<all_urls>"],
+      "js": ["plugins/jquery.min.js"]
+    },
+    {
       "matches": [
-        "https://www.siegfriedgin.com/*",
         "https://www.notebooksbilliger.de/*"
       ],
       "js": ["notificationDIV.js"]
     },
     {
       "matches": [
-        "https://www.siegfriedgin.com/*"
-      ],
-      "js": ["jquery.min.js","addToCartScripts/siegfried.js"]
-    },
-    {
-      "matches": [
-        "https://www.siegfriedgin.com/shop/checkout/"
-      ],
-      "js": ["jquery.min.js","autofills/siegfried.js"]
-    },
-    {
-      "matches": [
         "https://www.notebooksbilliger.de/*"
       ],
-      "js":["jquery.min.js","addToCartScripts/nbb.js"]
+      "js":["addToCartScripts/nbb.js"]
+    },
+    {
+      "matches":[
+        "https://www.notebooksbilliger.de/kasse",
+        "https://www.notebooksbilliger.de/kasse/unregistriert"
+      ],
+      "js": ["checkoutSiteScripts/nbb-kasse.js"]
+    },
+    {
+      "matches": [
+        "https://www.notebooksbilliger.de/kasse/zusammenfassung"
+      ],
+      "js": ["checkoutSiteScripts/nbb-summary.js"]
     }
   ]
 }

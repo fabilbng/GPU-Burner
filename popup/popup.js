@@ -1,0 +1,1 @@
+optionsStorage.syncForm(document.querySelector('form'));
