@@ -1,8 +1,8 @@
 {
   "manifest_version": 2,
 
-  "name": "MyPLugin",
-  "description": "This plugin will do something cool",
+  "name": "GPU-Burner",
+  "description": "Getting GPU's on a daily basis",
   "version": "1.0",
 
   "browser_action": {
@@ -15,7 +15,8 @@
       "optionsStorage.js",
       "plugins/jquery.min.js",
       "backgroundscripts/globalfunctions.js",
-      "backgroundscripts/nbb.js"
+      "backgroundscripts/nbb.js",
+      "backgroundscripts/akvpwr-bypass.js"
     ]
   },
   "permissions": [
@@ -26,7 +27,7 @@
   "content_scripts": [
     {
       "matches": ["<all_urls>"],
-      "js": ["plugins/jquery.min.js", "globalContentScripts/akvpwr-bypass.js"]
+      "js": ["plugins/jquery.min.js","optionsStorage.js", "globalContentScripts/akvpwr-bypass.js"]
     },
     {
       "matches": [

@@ -7,45 +7,62 @@
     <script src="../plugins/webtext-options.js"></script>
     <script src="../optionsStorage.js"></script>
     <script src="../plugins/jquery.min.js"></script>
+    <script src="../plugins/popper.js"></script>
+    <script src="../plugins/bootstrap.js"></script>
     <script src="popup.js"></script>
   </head>
   <body>
   <div class="popup-container">
     <div class="information-form">
       <form>
-        <label class="form-label">Name</label>
-        <div class="input-group mb-3">
-          <input type="text" class="form-control" name="firstName" placeholder="First Name" aria-label="First Name">
-          <input type="text" class="form-control" name="lastName" placeholder="Last Name" aria-label="Last Name">
-        </div>
-        <label class="form-label">Address</label>
-        <div class="input-group mb-3">
-          <input type="text" class="form-control" name="streetName" placeholder="Street" aria-label="Street">
-          <input type="text" class="form-control" name="streetNumber" placeholder="Street Number" aria-label="Street Number">
-        </div>
-        <div class="input-group mb-3">
-          <input type="text" class="form-control" name="postcode" placeholder="Postcode" aria-label="Postcode">
-          <input type="text" class="form-control" name="city" placeholder="City" aria-label="City">
-        </div>
-        <label class="form-label">CCDetails</label>
-        <div class="input-group mb-3">
-          <input type="text" class="form-control" name="cardNumber" placeholder="Card Number" aria-label="Postcode">
-          <input type="text" class="form-control" name="cvv" placeholder="CVV" aria-label="State">
-        </div>
-        <div class="input-group mb-3">
-          <input type="text" class="form-control" name="expireMonth" placeholder="Expire Month (06)" aria-label="State">
-          <input type="text" class="form-control" name="expireYear" placeholder="Expire Year (25)" aria-label="State">
-        </div>
-        <label class="form-label">Other Stuff</label>
-        <div class="mb-3">
-          <input type="text" class="form-control" name="phoneNumber" placeholder="Phone Number (49...)" aria-label="Phone Number">
-        </div>
-        <div class="mb-3">
-          <input type="email" class="form-control" name="email" placeholder="Email" aria-label="Email">
-        </div>
-        <div class="form-check form-check-inline">
-          <input class="form-check-input" type="checkbox" name="nbbEnabled" value=1>
-          <label class="form-check-label">NBB</label>
+        <nav>
+          <div class="nav nav-tabs" id="nav-tab" role="tablist">
+            <a class="nav-item nav-link active" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-home" aria-selected="true">Profile</a>
+            <a class="nav-item nav-link" id="nav-modules-tab" data-toggle="tab" href="#nav-modules" role="tab" aria-controls="nav-profile" aria-selected="false">Modules</a>
+          </div>
+        </nav>
+        <div class="tab-content" id="nav-tabContent">
+          <div class="tab-pane fade show active" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+            <label class="form-label">Name</label>
+            <div class="input-group mb-3">
+              <input type="text" class="form-control" name="firstName" placeholder="First Name" aria-label="First Name">
+              <input type="text" class="form-control" name="lastName" placeholder="Last Name" aria-label="Last Name">
+            </div>
+            <label class="form-label">Address</label>
+            <div class="input-group mb-3">
+              <input type="text" class="form-control" name="streetName" placeholder="Street" aria-label="Street">
+              <input type="text" class="form-control" name="streetNumber" placeholder="Street Number" aria-label="Street Number">
+            </div>
+            <div class="input-group mb-3">
+              <input type="text" class="form-control" name="postcode" placeholder="Postcode" aria-label="Postcode">
+              <input type="text" class="form-control" name="city" placeholder="City" aria-label="City">
+            </div>
+            <label class="form-label">CCDetails</label>
+            <div class="input-group mb-3">
+              <input type="text" class="form-control" name="cardNumber" placeholder="Card Number" aria-label="Postcode">
+              <input type="text" class="form-control" name="cvv" placeholder="CVV" aria-label="State">
+            </div>
+            <div class="input-group mb-3">
+              <input type="text" class="form-control" name="expireMonth" placeholder="Expire Month (06)" aria-label="State">
+              <input type="text" class="form-control" name="expireYear" placeholder="Expire Year (25)" aria-label="State">
+            </div>
+            <label class="form-label">Other Stuff</label>
+            <div class="mb-3">
+              <input type="text" class="form-control" name="phoneNumber" placeholder="Phone Number (49...)" aria-label="Phone Number">
+            </div>
+            <div class="mb-3">
+              <input type="email" class="form-control" name="email" placeholder="Email" aria-label="Email">
+            </div>
+          </div>
+          <div class="tab-pane fade" id="nav-modules" role="tabpanel" aria-labelledby="nav-modules-tab">
+              <label class="form-label">NBB</label>
+              <br/>
+              <input class="form-check-input" type="checkbox" name="nbbNormalEnabled" value=1>
+              <label class="form-check-label">Normal</label>
+              <br/>
+              <input class="form-check-input" type="checkbox" name="nbbRequestEnabled" value=1>
+              <label class="form-check-label">Request</label>
+          </div>
         </div>
       </form>
     </div>

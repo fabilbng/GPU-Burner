@@ -1,5 +1,5 @@
 const checkForCookie = () => {
-    console.log(document.cookie)
+    chrome.runtime.sendMessage({message: 'startBypass', cookies: document.cookie})
 }
 
 if (document.readyState === 'loading') {
