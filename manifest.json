@@ -16,7 +16,7 @@
       "plugins/jquery.min.js",
       "backgroundscripts/globalfunctions.js",
       "backgroundscripts/nbb.js",
-      "backgroundscripts/akvpwr-bypass.js"
+      "backgroundscripts/akavpwr-bypass.js"
     ]
   },
   "permissions": [
@@ -27,7 +27,7 @@
   "content_scripts": [
     {
       "matches": ["<all_urls>"],
-      "js": ["plugins/jquery.min.js","optionsStorage.js", "globalContentScripts/akvpwr-bypass.js"]
+      "js": ["plugins/jquery.min.js","plugins/webtext-options.js","optionsStorage.js", "globalContentScripts/akavpwr-bypass.js"]
     },
     {
       "matches": [

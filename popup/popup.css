@@ -1,7 +1,26 @@
+.heading {
+    padding: 5px;
+    margin-bottom: 1px;
+}
+
 .information-form{
-    padding: 20px;
+    padding: 5px;
+    display: flex;
 }
 
 .popup-container {
     width: 500px;
+    border: solid;
+}
+
+.nav-items-column {
+    border-right: solid grey;
+    overflow: auto;
+    min-width: 110px;
+    padding-right: 10px;
+}
+
+.options-column {
+    padding-left: 10px;
+    overflow: auto;
 }
