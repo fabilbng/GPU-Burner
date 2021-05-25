@@ -17,6 +17,7 @@
     border-right: solid grey;
     overflow: auto;
     min-width: 110px;
+    max-width: 110px;
     padding-right: 10px;
 }
 

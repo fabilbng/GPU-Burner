@@ -19,7 +19,9 @@
         <nav>
           <div class="nav nav-pills flex-column" id="nav-tab" role="tablist">
             <a class="nav-item nav-link active" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-home" aria-selected="true">Profile</a>
-            <a class="nav-item nav-link" id="nav-modules-tab" data-toggle="tab" href="#nav-nbb" role="tab" aria-controls="nav-nbb" aria-selected="false">NBB</a>
+            <a class="nav-item nav-link" id="nav-nbb-tab" data-toggle="tab" href="#nav-nbb" role="tab" aria-controls="nav-nbb" aria-selected="false">NBB</a>
+            <a class="nav-item nav-link" id="nav-queue-tab" data-toggle="tab" href="#nav-queue" role="tab" aria-controls="nav-queue" aria-selected="false">QueueBP</a>
+            <a class="nav-item nav-link" id="nav-gamestop-tab" data-toggle="tab" href="#nav-gamestop" role="tab" aria-controls="nav-gamestop" aria-selected="false">Gamestop</a>
           </div>
         </nav>
       </div>
@@ -65,6 +67,20 @@
               <input class="form-check-input" type="checkbox" name="nbbRequestEnabled" value=1>
               <label class="form-check-label">Request</label>
             </div>
+            <div class="tab-pane fade" id="nav-queue" role="tabpanel" aria-labelledby="nav-queue-tab">
+              <input class="form-check-input" type="checkbox" name="queueBpManualEnabled" value=1>
+              <label class="form-check-label">Manual</label>
+              <br/>
+              <input class="form-check-input" type="checkbox" name="queueBpAutomaticEnabled" value=1>
+              <label class="form-check-label">Automatic</label>
+            </div>
+            <div class="tab-pane fade" id="nav-gamestop" role="tabpanel" aria-labelledby="nav-gamestop-tab">
+              <input class="form-check-input" type="checkbox" name="gamestopRequestEnabled" value=1>
+              <label class="form-check-label">Request</label>
+              <br/>
+              <input class="form-check-input" type="checkbox" name="gamestopCheckoutFromCartEnabled" value=1>
+              <label class="form-check-label">Start Checkout from CartSite</label>
+            </div>
           </div>
         </form>
       </div>
@@ -73,3 +89,4 @@
   </body>
   <script src="options.js"></script>
 </html>
+

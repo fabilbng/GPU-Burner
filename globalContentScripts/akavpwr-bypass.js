@@ -1,34 +1,7 @@
-const getDomain = (url) => {
-    if (url.includes('gamestop')){
-        return 'www.gamestop.de'
-    }
-    else if (url.includes('notebooksbilliger')){
-        return 'www.notebooksbilliger.de'
-    }
-    else {
-        return false
-    }
-}
+const supportedSites= [{site:'notebooksbilliger', url: 'www.notebooksbilliger.de' }, {site:'gamestop', url:'www.gamestop.de' }]
+var notificationDivRight = document.createElement('div')
 
-const changeCookie = (cookie, bypassButton) =>{
-    const url = window.location.href
-    const domain = getDomain(url)
-    if (domain){
-        document.cookie = `${cookie}; domain=${domain}; expires=Thu, 01 Jan 2000 00:00:00 UTC; path=/;`
-        let newAkavpauCookie = cookie
-        newAkavpauCookie[5] = 'w'
-        newAkavpauCookie[6] = 'r'
-        document.cookie = `${newAkavpauCookie}; domain=${domain}; expires=Session; path=/;`
-        bypassButton.innerHTML='Bypassed!'
-    }
-    else {
-        bypassButton.innerHTML='Site not supported'
-    }
-
-}
-
-const createBypassButton = (cookie) => {
-    var notificationDivRight = document.createElement('div')
+const createNotificationDivRight = (notificationDivRight) => {
     notificationDivRight.style.position = 'fixed'
     notificationDivRight.style.bottom = '10px'
     notificationDivRight.style.right = '10px'
@@ -37,6 +10,11 @@ const createBypassButton = (cookie) => {
     notificationDivRight.style.backgroundColor = 'black'
     notificationDivRight.style.opacity="100"
     notificationDivRight.style.zIndex="9999"
+}
+
+
+
+const createBypassButton = (notificationDivRight, site) => {
     notificationDivRight.innerHTML= '' +
         '<div style=" height: 100%; display: flex; flex-direction: column; align-items: center;">' +
         '<h3 style="margin-bottom:5px; color: white">Bypass Possible</h3>' +
@@ -44,28 +22,48 @@ const createBypassButton = (cookie) => {
         '</div>'
     const bypassButton = notificationDivRight.getElementsByClassName('bypassButton')
     bypassButton[0].addEventListener("click", () => {
-        changeCookie(cookie, bypassButton[0])
+        chrome.runtime.sendMessage({message: 'startQueueBp', site: site})
     }, false);
     document.body.appendChild(notificationDivRight)
 }
 
-const checkForCookie = () => {
-    const cookies = document.cookie
-    const cookieArray = cookies.split(';')
-    console.log(cookieArray)
-    cookieArray.some(cookie => {
-        if (cookie.includes('akavpau')){
-            return createBypassButton(cookie)
-        }
-    })
-
-
+const createSuccessNotificationDivRight = (notificationDivRight) => {
+    notificationDivRight.innerHTML= '' +
+        '<div style=" height: 100%; display: flex; flex-direction: column; align-items: center;">' +
+        '<h3 style="margin-bottom:5px; color: white">Added akavpau-cookie, refresh the page</h3>' +
+        '</div>'
+    document.body.appendChild(notificationDivRight)
 }
 
-/*if (document.readyState === 'loading') {
+const checkForCookie = () => {
+    supportedSites.some(
+        (site) => {
+            if (window.location.href.includes(site.site)){
+                createNotificationDivRight(notificationDivRight)
+                return chrome.runtime.sendMessage({message: 'checkForBypassCookie', site: site})
+            }
+        }
+    )
+}
+
+chrome.runtime.onMessage.addListener(
+    (request) => {
+    if (request.message === 'addedAkavPauCookie'){
+        createSuccessNotificationDivRight(notificationDivRight)
+    }
+    else if (request.message === 'createManualQueueBpButton'){
+        createBypassButton(notificationDivRight, request.site)
+    }
+    else if (request.message === 'QueueBypassDisabled'){
+        notificationDivRight.innerHTML = 'QueueBp Disabled'
+        document.body.appendChild(notificationDivRight)
+    }
+})
+
+if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', () => {
         checkForCookie()
     });
 } else {  // `DOMContentLoaded` has already fired
     checkForCookie()
-}*/
+}

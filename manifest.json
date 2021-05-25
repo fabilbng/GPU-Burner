@@ -16,13 +16,17 @@
       "plugins/jquery.min.js",
       "backgroundscripts/globalfunctions.js",
       "backgroundscripts/nbb.js",
-      "backgroundscripts/akavpwr-bypass.js"
+      "backgroundscripts/akavpwr-bypass.js",
+      "backgroundscripts/gamestop.js"
     ]
   },
   "permissions": [
     "activeTab",
     "tabs",
-    "storage"
+    "storage",
+    "cookies",
+    "http://*/*",
+    "https://*/*"
   ],
   "content_scripts": [
     {
@@ -31,9 +35,16 @@
     },
     {
       "matches": [
-        "https://www.notebooksbilliger.de/*"
+        "https://www.notebooksbilliger.de/*",
+        "https://www.gamestop.de/*"
       ],
       "js": ["notificationDIV.js"]
+    },
+    {
+      "matches": [
+        "https://www.gamestop.de/*"
+      ],
+      "js": ["addToCartScripts/gamestop.js"]
     },
     {
       "matches": [
