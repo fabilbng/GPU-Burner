@@ -595,16 +595,6 @@ chrome.runtime.onMessage.addListener(
                 sendNotif(sender.tab.id, 'Invalid Profile')
             }
         }
-        else if (options.nbbNormalEnabled){
-        if (request.message === 'startCheckoutNbb'){
-            startCheckoutNbb(sender.tab.id, request.klarnaTokenId, request.klarnaSessionId, options)
-        }
-        else if (request.message === 'encryptCheckoutNbb'){
-            encryptCheckoutNbb(request.pToken, options, sender.tab.id)
-        }
-        else if (request.message === 'completeCheckoutNbb'){
-            completeCheckoutNbb(request.pToken, request.pseudoCardPan, options, sender.tab.id)
-        }}
         })
     }
 )
