@@ -51,6 +51,12 @@
         "https://www.notebooksbilliger.de/*"
       ],
       "js":["addToCartScripts/nbb.js"]
+    },
+    {
+      "matches": [
+        "https://www.notebooksbilliger.de/kasse/unregistriert"
+      ],
+      "js": ["optionsStorage.js", "backgroundscripts/globalfunctions.js", "autofillScripts/nbb-kasse.js"]
     }
   ]
 }
