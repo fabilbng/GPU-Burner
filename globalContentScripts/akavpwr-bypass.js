@@ -1,20 +1,15 @@
-const supportedSites= [{site:'notebooksbilliger', url: 'www.notebooksbilliger.de' }, {site:'gamestop', url:'www.gamestop.de' }]
 var notificationDivRight = document.createElement('div')
-
-const createNotificationDivRight = (notificationDivRight) => {
-    notificationDivRight.style.position = 'fixed'
-    notificationDivRight.style.bottom = '10px'
-    notificationDivRight.style.right = '10px'
-    notificationDivRight.style.width = '200px'
-    notificationDivRight.style.height = '65px'
-    notificationDivRight.style.backgroundColor = 'black'
-    notificationDivRight.style.opacity="100"
-    notificationDivRight.style.zIndex="9999"
-}
+notificationDivRight.style.position = 'fixed'
+notificationDivRight.style.bottom = '10px'
+notificationDivRight.style.right = '10px'
+notificationDivRight.style.width = '200px'
+notificationDivRight.style.height = '65px'
+notificationDivRight.style.backgroundColor = 'black'
+notificationDivRight.style.opacity="100"
+notificationDivRight.style.zIndex="9999"
 
 
-
-const createBypassButton = (notificationDivRight, site) => {
+const createBypassButton = (notificationDivRight, domain) => {
     notificationDivRight.innerHTML= '' +
         '<div style=" height: 100%; display: flex; flex-direction: column; align-items: center;">' +
         '<h3 style="margin-bottom:5px; color: white">Bypass Possible</h3>' +
@@ -22,28 +17,21 @@ const createBypassButton = (notificationDivRight, site) => {
         '</div>'
     const bypassButton = notificationDivRight.getElementsByClassName('bypassButton')
     bypassButton[0].addEventListener("click", () => {
-        chrome.runtime.sendMessage({message: 'startQueueBp', site: site})
+        chrome.runtime.sendMessage({message: 'startQueueBp'})
     }, false);
     document.body.appendChild(notificationDivRight)
 }
 
 const createSuccessNotificationDivRight = (notificationDivRight) => {
     notificationDivRight.innerHTML= '' +
-        '<div style=" height: 100%; display: flex; flex-direction: column; align-items: center;">' +
+        '<div style="height: 100%; display: flex; flex-direction: column; align-items: center;">' +
         '<h3 style="margin-bottom:5px; color: white">Added akavpau-cookie, refresh the page</h3>' +
         '</div>'
     document.body.appendChild(notificationDivRight)
 }
 
 const checkForCookie = () => {
-    supportedSites.some(
-        (site) => {
-            if (window.location.href.includes(site.site)){
-                createNotificationDivRight(notificationDivRight)
-                return chrome.runtime.sendMessage({message: 'checkForBypassCookie', site: site})
-            }
-        }
-    )
+        return chrome.runtime.sendMessage({message: 'checkForBypassCookie', site: window.location.href})
 }
 
 chrome.runtime.onMessage.addListener(
@@ -52,10 +40,10 @@ chrome.runtime.onMessage.addListener(
         createSuccessNotificationDivRight(notificationDivRight)
     }
     else if (request.message === 'createManualQueueBpButton'){
-        createBypassButton(notificationDivRight, request.site)
+        createBypassButton(notificationDivRight, request.domain)
     }
     else if (request.message === 'QueueBypassDisabled'){
-        notificationDivRight.innerHTML = 'QueueBp Disabled'
+        notificationDivRight.innerHTML = '<h3 style="color: white"> Queue bp disabled</h3>'
         document.body.appendChild(notificationDivRight)
     }
 })
